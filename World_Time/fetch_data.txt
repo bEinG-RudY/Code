@@ -1,0 +1,7 @@
+import 'package:http/http.dart' as http;
+
+void getData() async {
+  var response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
+  var data = jsonDecode(response.body) as Map;
+  print(data);
+}
