@@ -1,0 +1,18 @@
+import 'dart:async';
+
+import 'package:_samples2/networking.dart';
+
+class WorldTimeApi {
+  static const _url = 'http://worldtimeapi.org/api/timezone';
+
+  static FutureOr<void> fetchTime(String relPath) async {
+    await NetService.getJson(_url + relPath)
+      .then((response) => print(response))
+      .whenComplete(() => print('\nFetching done!'));
+  }
+}
+
+void main(List<String> args) async {
+  await WorldTimeApi.fetchTime('/America/Los_Angeles');
+  print('Done!');
+}
