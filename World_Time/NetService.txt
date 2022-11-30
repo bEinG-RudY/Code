@@ -1,0 +1,13 @@
+class NetService {
+  static Future<T?> getJson<T>(String url, {int okCode = 200}) {
+    return http.get(Uri.parse(url))
+      .then((response) {
+        if (response.statusCode == okCode) {
+          return jsonDecode(response.body) as T;
+        }
+        PrintService.showDataNotOK(response);
+        return null;
+      })
+      .catchError((err) => PrintService.showError(err));
+  }
+}
